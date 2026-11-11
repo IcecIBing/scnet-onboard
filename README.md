@@ -38,6 +38,25 @@ provider 以 `apiKeyEnv` 引用它——**DSH 不认配置里的明文 apiKey �
 - 模型选择里会出现 `scnet/SCNet-Max`，按你鱼自己的场景机制把主力指过去即可。
 - 体检：`node scnet-doctor.mjs`（provider 注册 / 凭据引用 / 密钥活性 / 模型目录 / 工具 schema 审计）。
 
+## 懒人一键装（三行）
+
+本机装了 git 和 node 的话，鱼自己或主人贴这三行就完事：
+
+```bash
+git clone https://github.com/IcecIBing/scnet-onboard.git
+cd scnet-onboard
+node scnet-onboard.mjs --key sk-xxxx --restart
+```
+
+不想装 git？只下脚本也行（curl 或浏览器直接存）：
+
+```bash
+curl -O https://raw.githubusercontent.com/IcecIBing/scnet-onboard/main/scnet-onboard.mjs
+curl -O https://raw.githubusercontent.com/IcecIBing/scnet-onboard/main/scnet-doctor.mjs
+```
+
+装完跑一遍体检确认：`node scnet-doctor.mjs`。
+
 ## 10013 坑：工具 schema 必须是标准 JSON Schema
 
 SCNet 对 `tools[].function.parameters` 做**严格校验**。很多插件把参数写成
