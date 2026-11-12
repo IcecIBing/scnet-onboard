@@ -1,0 +1,7 @@
+{
+  "apiKey": "sk-在这里粘贴你自己的key",
+  "接口地址": "https://api.scnet.cn/api/llm/v1/chat/completions",
+  "默认模型": "SCNet-Max",
+  "免费包模型": "GLM-5.3-Flash",
+  "备注": "免费额度按模型分家：SCNet-Max 走 API 在活动窗口内（到 11/30）不扣免费额度池；扣池的是 GLM 系免费包，到账起 30 天到期，扣完自动转现金扣费——ask_scnet.py 内置保险防转现金"
+}

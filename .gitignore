@@ -1,0 +1,4 @@
+scnet-key.json
+scnet-glm-guard.json
+*.log
+__pycache__/
