@@ -22,8 +22,23 @@ import argparse, json, sys, os, urllib.request
 GLM_包上限 = 119_000_000          # 1.2 亿包留 1% 余量，接近就熔断
 
 def 读配置():
-    with open(配置路径, encoding='utf-8') as f:
-        return json.load(f)
+    if not os.path.exists(配置路径):
+        print('【SCNet 配置缺失】还没配置 API Key，按三步来：', file=sys.stderr)
+        print('  1. 去 https://www.scnet.cn 注册账号并实名（网页控制台 → API 密钥）', file=sys.stderr)
+        print('  2. 把本目录的 scnet-key.example.json 复制一份命名为 scnet-key.json', file=sys.stderr)
+        print('  3. 把创建的 apiKey 填进去（建议用 apiKeyEnv 环境变量引用，别明文）', file=sys.stderr)
+        print('  配好后重新运行本脚本即可。详见仓库 README。', file=sys.stderr)
+        sys.exit(2)
+    try:
+        with open(配置路径, encoding='utf-8') as f:
+            cfg = json.load(f)
+    except Exception as e:
+        print('【SCNet 配置错误】scnet-key.json 解析失败：%s' % e, file=sys.stderr)
+        sys.exit(2)
+    if not cfg.get('apiKey') and not cfg.get('apiKeyEnv'):
+        print('【SCNet 配置缺失】scnet-key.json 里没有 apiKey / apiKeyEnv 字段，按上面三步补齐。', file=sys.stderr)
+        sys.exit(2)
+    return cfg
 
 def 读保险():
     默认 = {'glm_used': 0, 'glm_disabled': False, '原因': ''}
