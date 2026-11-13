@@ -48,12 +48,21 @@ cd scnet-onboard
 node scnet-onboard.mjs --key sk-xxxx --restart
 ```
 
-不想装 git？只下脚本也行（curl 或浏览器直接存）：
+不想装 git？只下脚本也行。**推荐整包下载**（最稳，一条命令拿全）：
 
 ```bash
-curl -O https://raw.githubusercontent.com/IcecIBing/scnet-onboard/main/scnet-onboard.mjs
-curl -O https://raw.githubusercontent.com/IcecIBing/scnet-onboard/main/scnet-doctor.mjs
+curl -LO https://codeload.github.com/IcecIBing/scnet-onboard/zip/refs/heads/main
+# 解压后进目录即可；Windows 也可直接在仓库页点 Code → Download ZIP
 ```
+
+只要单个脚本的话，用镜像直链（国内网络对 `raw.githubusercontent.com` 常会 TLS 握手失败）：
+
+```bash
+curl -O https://ghproxy.net/https://raw.githubusercontent.com/IcecIBing/scnet-onboard/main/scnet-onboard.mjs
+curl -O https://ghproxy.net/https://raw.githubusercontent.com/IcecIBing/scnet-onboard/main/scnet-doctor.mjs
+```
+
+也可以直接在仓库页打开文件，点 **Raw** 或右键「另存为」保存。
 
 装完跑一遍体检确认：`node scnet-doctor.mjs`。
 
